@@ -1,6 +1,6 @@
 # like-server
 
-`server.close()` and keep-alive done right at socket level.
+`server.close()` and `keep-alive` done right at socket level.
 
 [![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-server) ![](https://img.shields.io/github/size/lukks/like-server/index.js.svg) ![](https://img.shields.io/npm/dt/like-server.svg) ![](https://img.shields.io/npm/v/like-server.svg) ![](https://img.shields.io/github/license/LuKks/like-server.svg)
 
