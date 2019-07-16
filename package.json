@@ -1,0 +1,35 @@
+{
+  "name": "like-server",
+  "version": "1.0.0",
+  "description": "server.close() done right at socket level",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuKks/like-server.git"
+  },
+  "author": "Lucas Barrena <lucasbarrena@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuKks/like-server/issues"
+  },
+  "homepage": "https://github.com/LuKks/like-server#readme",
+  "keywords": [
+    "like",
+    "server",
+    "close",
+    "gracefully",
+    "stop",
+    "net",
+    "http",
+    "https",
+    "ws",
+    "websocket",
+    "cluster",
+    "socket",
+    "connection"
+  ],
+  "devDependencies": {}
+}
