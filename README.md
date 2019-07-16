@@ -1,3 +1,5 @@
+# like-server
+
 `server.close()` done right at socket level.
 
 [![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-server) [![](https://img.shields.io/bundlephobia/min/like-server.svg)](https://github.com/LuKks/like-server/blob/master/index.min.js) ![](https://img.shields.io/npm/dt/like-server.svg) ![](https://img.shields.io/npm/v/like-server.svg) ![](https://img.shields.io/github/license/LuKks/like-server.svg)
