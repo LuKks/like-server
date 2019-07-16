@@ -10,7 +10,7 @@ require('like-server');
 
 const app = require('express')();
 
-app.get('/', (req, res) => res.send('random text'));
+app.get('/', (req, res) => res.send('text'));
 
 app.listen(3000);
 ```
