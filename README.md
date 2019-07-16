@@ -73,7 +73,7 @@ app.get('/long-polling', (req, res) => {
   }, 1);
 });
 
-let server = app.listen(3000, () => {
+const server = app.listen(3000, () => {
   console.log('server listening');
 
   //close server in 0.1s but the long request takes 6s!
