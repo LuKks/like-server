@@ -42,35 +42,6 @@ npm i like-server
 
 ## Several cases in example for http/s
 ```javascript
-//cluster
-const cluster = require('cluster');
-
-if(cluster.isMaster) {
-  let worker = cluster.fork();
-
-  worker.on('listening', () => {
-    //simulate client requests
-    const http = require('http');
-    const agent = new http.Agent({ keepAlive: true });
-
-    ['/short', '/timeout-polling', '/long-polling'].forEach(path => {
-      http.get('http://127.0.0.1:3000' + path, { agent }, res => {
-        res.on('data', chunk => console.log(path, chunk.toString()));
-      });
-    });
-
-    //close server in 0.1s but the long request takes 6s!
-    setTimeout(() => {
-      console.log('closing server due timeout');
-      cluster.disconnect(); //without cluster: server.close()
-    }, 100);
-  });
-
-  worker.on('disconnect', () => console.log('exit'));
-
-  return;
-}
-
 //normal express app
 require('like-server');
 
@@ -79,7 +50,7 @@ const app = require('express')();
 //short request
 app.get('/short', (req, res) => res.send('ok'));
 
-//optionally: handle long request with event
+//handle long request with event
 app.get('/timeout-polling', (req, res) => {
   let timeout = setTimeout(() => res.send('ok'), 3000);
 
@@ -89,7 +60,7 @@ app.get('/timeout-polling', (req, res) => {
   });
 });
 
-//optionally: handle long request with state
+//handle long request with state
 app.get('/long-polling', (req, res) => {
   let count = 0;
 
@@ -102,7 +73,27 @@ app.get('/long-polling', (req, res) => {
   }, 1);
 });
 
-app.listen(3000, () => console.log('listening'));
+let server = app.listen(3000, () => {
+  console.log('server listening');
+
+  //close server in 0.1s but the long request takes 6s!
+  setTimeout(() => {
+    console.log('closing server due timeout');
+    server.close(); //cluster.disconnect() or cluster.worker.disconnect()
+  }, 100);
+
+  //simulate client requests
+  const http = require('http');
+  const agent = new http.Agent({ keepAlive: true });
+
+  ['/short', '/timeout-polling', '/long-polling'].forEach(path => {
+    http.get('http://127.0.0.1:3000' + path, { agent }, res => {
+      res.on('data', chunk => console.log(path, chunk.toString()));
+    });
+  });
+});
+
+process.on('exit', () => console.log('exit'));
 ```
 
 In 0s:
