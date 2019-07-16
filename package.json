@@ -1,6 +1,6 @@
 {
   "name": "like-server",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "server.close() and keep-alive done right at socket level",
   "main": "index.js",
   "scripts": {
