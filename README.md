@@ -31,14 +31,14 @@ npm i like-server
 #### Compatible with everything:
 - net, http, https and cluster modules.
 - Any framework that use them (express, etc).
-- WebSocket with `socket.requests` and `socket.terminated` or `'terminate'` event.
+- WebSocket with `socket.requests` and `terminated` state or `'terminate'` event.
 
 #### Description
-- Built in the most efficient way based on research.
-- Doesn't need change any code, works as expected.
-- In WebSocket there is no way to know if it's idle or not, need to add code there but always was in that way.
-- Extremely useful when you have deployment with Docker, pm2, k8s, etc.
-- It provides instant exit but without destroying everything.
+Built in the most efficient way based on research.\
+Doesn't need change any code, works as expected.\
+In WebSocket there is no way to know if it's idle or not, need to add code (1 line).\
+Extremely useful when you have deployment with Docker, pm2, k8s, etc.\
+It provides instant exit but without destroying everything.
 
 ## Several cases in example for http/s
 ```javascript
@@ -79,7 +79,7 @@ let server = app.listen(3000, () => {
   //close server in 0.1s but the long request takes 6s!
   setTimeout(() => {
     console.log('closing server due timeout');
-    server.close(); //cluster.disconnect() or cluster.worker.disconnect()
+    server.close(); //cluster.disconnect() or worker.disconnect()
   }, 100);
 
   //simulate client requests
