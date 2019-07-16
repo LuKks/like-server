@@ -1,8 +1,22 @@
-# like-server
+`server.close()` done right at socket level.
 
 [![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-server) [![](https://img.shields.io/bundlephobia/min/like-server.svg)](https://github.com/LuKks/like-server/blob/master/index.min.js) ![](https://img.shields.io/npm/dt/like-server.svg) ![](https://img.shields.io/npm/v/like-server.svg) ![](https://img.shields.io/github/license/LuKks/like-server.svg)
 
-`server.close()` done right at socket level.
+Require the package and you are done, just works perfect.
+```javascript
+require('like-server');
+
+const app = require('express')();
+
+app.get('/', (req, res) => res.end('random text'));
+
+app.listen(3000);
+```
+
+## Install
+```
+npm i like-server
+```
 
 #### Handles keep-alive connections as it should be:
 - Idle sockets (connections) will be ended when server want to close.
@@ -23,23 +37,6 @@
 - In WebSocket there is no way to know if it's idle or not, need to add code there but always was in that way.
 - Extremely useful when you have deployment with Docker, pm2, k8s, etc.
 - It provides instant exit but without destroying everything.
-
-## Install
-```
-npm i like-server
-```
-
-## Example
-Require the package and you are done, just works perfect.
-```javascript
-require('like-server');
-
-const app = require('express')();
-
-app.get('/', (req, res) => res.end('random text'));
-
-app.listen(3000);
-```
 
 ## Several cases in example for http/s
 ```javascript
