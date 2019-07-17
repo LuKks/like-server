@@ -78,7 +78,7 @@ const server = app.listen(3000, () => {
 
   //close server in 0.1s but the long request takes 6s!
   setTimeout(() => {
-    console.log('closing server due timeout');
+    console.log('server closing');
     server.close(); //cluster.disconnect() or worker.disconnect()
   }, 100);
 
@@ -101,7 +101,7 @@ In 0s:
 ```
 server listening
 /short ok
-server closing due timeout
+server closing
 server want to terminate
 /timeout-polling term
 /long-polling term
@@ -112,7 +112,7 @@ In 7s without handling terminate (expected due the long requests takes its time)
 ```
 server listening
 /short ok
-server closing due timeout
+server closing
 server want to terminate
 /timeout-polling ok +3s
 /long-polling ok +4s
@@ -123,7 +123,7 @@ In 12s without like-server:
 ```
 server listening
 /short ok
-server closing due timeout
+server closing
 /timeout-polling ok +3s
 /long-polling ok +4s
 exit +5s
@@ -172,18 +172,19 @@ server.listen(8000, () => {
 
   //close server in 0.1s
   setTimeout(() => {
-    console.log('server closing due timeout');
+    console.log('server closing');
     server.close();
   }, 100);
+
+  //simulate client
+  new WebSocket('ws://localhost:8000')
+  .on('open', () => console.log('client opened'))
+  .on('close', (code, reason) => console.log('client closed', reason))
+  .on('message', data => console.log('client recv', data));
 });
 
 server.on('terminate', () => console.log('server want to terminate'));
-
-//simulate client
-new WebSocket('ws://localhost:8000')
-.on('open', () => console.log('client opened'))
-.on('close', (code, reason) => console.log('client closed', reason))
-.on('message', data => console.log('client recv', data));
+process.on('exit', () => console.log('exit'));
 ```
 
 In 0s:
@@ -193,9 +194,10 @@ client opened
 client recv 20 +25ms
 client recv 40 +23ms
 client recv 60 +23ms
-server closing due timeout
+server closing
 server want to terminate
 client closed term
+exit
 ```
 
 ## Tests
