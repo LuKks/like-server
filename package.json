@@ -28,8 +28,7 @@
     "ws",
     "websocket",
     "cluster",
-    "socket",
-    "connection"
+    "socket"
   ],
   "devDependencies": {}
 }
