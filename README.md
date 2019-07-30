@@ -20,6 +20,7 @@ app.listen(3000);
 npm i like-server
 ```
 
+## Features
 #### Handles keep-alive connections as it should be:
 - Idle sockets (connections) will be ended when server want to close.
 - Active sockets (connections) will be ended when request end.
@@ -33,7 +34,7 @@ npm i like-server
 - Any framework that use them (express, etc).
 - WebSocket with `socket.requests` and `terminated` state or `'terminate'` event.
 
-#### Description
+## Description
 Built in the most efficient way based on research.\
 Doesn't need change any code, works as expected.\
 In WebSocket there is no way to know if it's idle or not, need to add code (1 line).\
