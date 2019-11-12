@@ -4,7 +4,6 @@
 
 ![](https://img.shields.io/npm/v/like-server.svg) [![](https://img.shields.io/maintenance/yes/2019.svg?style=flat-square)](https://github.com/LuKks/like-server) ![](https://img.shields.io/github/size/lukks/like-server/index.js.svg) ![](https://img.shields.io/npm/dt/like-server.svg) ![](https://img.shields.io/github/license/LuKks/like-server.svg)
 
-Require the package and you are done, just works perfect.
 ```javascript
 require('like-server');
 
@@ -35,11 +34,12 @@ npm i like-server
 - WebSocket with `socket.requests` and `terminated` state or `'terminate'` event.
 
 ## Description
+Combines great with [like-process](https://github.com/LuKks/like-process).\
 Built in the most efficient way based on research.\
 Doesn't need change any code, works as expected.\
-In WebSocket there is no way to know if it's idle or not, need to add code (1 line).\
+In WS there is no way to know if it's idle or not, need to add code (1 line).\
 Extremely useful when you have deployment with Docker, pm2, k8s, etc.\
-It provides instant exit but without destroying everything.
+It provides instant exit without destroying everything.
 
 ## Several cases in example for http/s
 ```javascript
