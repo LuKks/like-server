@@ -212,7 +212,7 @@ exit +5s
 
 ## Example for WebSocket
 ```javascript
-// https://www.npmjs.com/ws#external-https-server
+// https://github.com/websockets/ws#external-https-server
 require('like-server');
 const WebSocket = require('ws');
 const server = require('http').createServer();
@@ -287,7 +287,7 @@ The server.close() is called then:
 - `server.terminated` state is setted and server `'terminate'` event is emitted
 - all `socket.terminated` state are setted
 - sockets with pending requests are emitted with `'terminate'` event
-- sockets with without pending requests are ended then destroyed
+- sockets without pending requests are ended then destroyed
 - Here we have the event loop empty so it really gracefully close
 
 ## Tests
