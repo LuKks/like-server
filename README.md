@@ -46,8 +46,8 @@ npm i like-server
 Combines great with [like-process](https://github.com/LuKks/like-process).\
 Built in the most efficient way based on research.\
 Don't need change any code, works as expected.\
-Extremely useful when you have deployment with Docker, pm2, k8s, etc.\
-It provides instant close without destroying everything.
+Useful when have deployment with docker, pm2, k8s, etc.\
+Provides instant close without destroying everything.
 
 ## Example keep-alive
 ```javascript
