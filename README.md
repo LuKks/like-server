@@ -49,6 +49,20 @@ Don't need change any code, works as expected.\
 Useful when have deployment with docker, pm2, k8s, etc.\
 Provides instant close without destroying everything.
 
+## How it works?
+Normally can listen on SIGTERM to close the server:
+```javascript
+process.on('SIGTERM', () => server.close());
+```
+I recommend use [like-process](https://github.com/LuKks/like-process) for better resource management.
+
+The server.close() is called then:
+- `server.terminated` state is setted and server `'terminate'` event is emitted
+- all `socket.terminated` state are setted
+- sockets with pending requests are emitted with `'terminate'` event
+- sockets without pending requests are ended then destroyed
+- Here we have the event loop empty so it really gracefully close
+
 ## Example keep-alive
 ```javascript
 require('like-server');
@@ -275,20 +289,6 @@ client recv ok
 
 Can use `wss.close()` to abruptly close but the interval never ends,\
 it becomes difficult to handle resources like timers so better use like-server.
-
-## How it works?
-Normally can listen on SIGTERM to close the server:
-```javascript
-process.on('SIGTERM', () => server.close());
-```
-I recommend use [like-process](https://github.com/LuKks/like-process) for better resource management.
-
-The server.close() is called then:
-- `server.terminated` state is setted and server `'terminate'` event is emitted
-- all `socket.terminated` state are setted
-- sockets with pending requests are emitted with `'terminate'` event
-- sockets without pending requests are ended then destroyed
-- Here we have the event loop empty so it really gracefully close
 
 ## Tests
 ```
